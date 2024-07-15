@@ -123,6 +123,32 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &299185885 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: fa84981206a101a43b4b54b51dfccbe8, type: 3}
+  m_PrefabInstance: {fileID: 416646349}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &299185889
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299185885}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.9999998, y: 1.9999998, z: 2.0000005}
+  m_Center: {x: 0.000000923872, y: 0, z: 0}
 --- !u!1001 &416646349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -186,7 +212,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: fa84981206a101a43b4b54b51dfccbe8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 299185889}
   m_SourcePrefab: {fileID: 100100000, guid: fa84981206a101a43b4b54b51dfccbe8, type: 3}
 --- !u!1 &974006203
 GameObject:
@@ -304,7 +333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400122, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 400122, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
       propertyPath: m_LocalRotation.w
@@ -346,7 +375,13 @@ PrefabInstance:
       addedObject: {fileID: 1574150816}
     - targetCorrespondingSourceObject: {fileID: 100122, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1574150820}
+      addedObject: {fileID: 1574150821}
+    - targetCorrespondingSourceObject: {fileID: 100122, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1574150823}
+    - targetCorrespondingSourceObject: {fileID: 100122, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1574150824}
   m_SourcePrefab: {fileID: 100100000, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
 --- !u!1 &1574150815 stripped
 GameObject:
@@ -380,15 +415,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38dd35ba9443fae4bb3e05b9d2253f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  turnSpeed: 10
---- !u!4 &1574150819 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400122, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
-  m_PrefabInstance: {fileID: 1056035023}
+  moveSpeedIn: 20
+  maxAngularVelocity: Infinity
+  smoothTime: 0.05
+--- !u!54 &1574150821
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
---- !u!143 &1574150820
-CharacterController:
+  m_GameObject: {fileID: 1574150815}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!65 &1574150823
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -406,13 +464,23 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_Size: {x: 0.4, y: 1.8, z: 1}
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &1574150824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574150815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de5e474a21139f740949dd52748dc3b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  healthSlider: {fileID: 0}
 --- !u!1 &1728240673
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,7 +568,7 @@ Transform:
   m_GameObject: {fileID: 1728240673}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.8, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -518,8 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82bd55a7081b5ac4fa140dd6651b4659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerBody: {fileID: 1574150819}
-  mouseSensitivity: 100
+  player: {fileID: 1574150815}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
