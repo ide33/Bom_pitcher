@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -7979372741875230179}
   m_Layer: 0
   m_Name: Bomb
-  m_TagString: Untagged
+  m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,8 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd2d32219513954e898aecb06ec5896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionDelay: 3
-  explosionRadius: 5
+  explosionDelay: 2
+  explosionRadius: 10
   explosionForce: 700
-  damage: 50
+  damage: 25
   explosionEffect: {fileID: 1150934714579380, guid: 779aa8c25fbd0e1488637639c9fff976, type: 3}
