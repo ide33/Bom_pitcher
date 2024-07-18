@@ -1597,7 +1597,7 @@ MonoBehaviour:
   bombPrefab: {fileID: 5687390074015644293, guid: 4cb14ce3bcc677a48bcf37cd62154752, type: 3}
   throwPoint: {fileID: 960761303}
   throwForce: 10
-  speed: 3
+  speed: 4
   attackRange: 10
   detectionRange: 80
   patrolPoints:
@@ -1608,6 +1608,7 @@ MonoBehaviour:
   - {fileID: 963531409}
   - {fileID: 1351606535}
   throwCooldown: 3
+  detectionRadius: 10
 --- !u!65 &1652928463
 BoxCollider:
   m_ObjectHideFlags: 0

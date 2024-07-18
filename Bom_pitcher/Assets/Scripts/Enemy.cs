@@ -16,9 +16,18 @@ public class Enemy : MonoBehaviour
 
     private int currentPatrolIndex = 0; // 現在のパトロールポイントのインデックス
     private float lastThrowTime; // 最後に爆弾を投げた時間
+    [SerializeField] float detectionRadius = 15f; // 爆弾の検知範囲
+    Rigidbody cpuRb; // CPUのRigidbody
+
+    void Start()
+    {
+        cpuRb = GetComponent<Rigidbody>();
+    }
 
     void Update()
     {
+        AvoidBombs();
+
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         if (distanceToPlayer <= attackRange)
@@ -46,6 +55,38 @@ public class Enemy : MonoBehaviour
 
         float move = speed * Time.deltaTime;
         transform.Translate(Vector3.forward * move);
+    }
+
+     void AvoidBombs()
+    {
+        // 検知範囲内の全ての爆弾を検出
+        Collider[] bombs = Physics.OverlapSphere(transform.position, detectionRadius, LayerMask.GetMask("Bomb"));
+
+        if (bombs.Length > 0)
+        {
+            // 最も近い爆弾を探す
+            Collider nearestBomb = bombs[0];
+            float minDistance = Vector3.Distance(transform.position, nearestBomb.transform.position);
+
+            foreach (var bomb in bombs)
+            {
+                float distance = Vector3.Distance(transform.position, bomb.transform.position);
+                if (distance < minDistance)
+                {
+                    nearestBomb = bomb;
+                    minDistance = distance;
+                }
+            }
+
+            // 爆弾の反対方向に避ける
+            Vector3 avoidanceDirection = (transform.position - nearestBomb.transform.position).normalized;
+            cpuRb.velocity = avoidanceDirection * speed;
+        }
+        else
+        {
+            // 爆弾が検知範囲にない場合、停止する
+            cpuRb.velocity = Vector3.zero;
+        }
     }
 
     
@@ -82,6 +123,11 @@ public class Enemy : MonoBehaviour
 
     void ThrowBomb()
     {
+        
+        // // 爆弾に投げたオブジェクトの情報を設定
+        // Bomb bombScript = bomb.GetComponent<Bomb>();
+        // bombScript.thrower = gameObject;
+
         GameObject bomb = Instantiate(bombPrefab, throwPoint.position, throwPoint.rotation);
         Rigidbody rb = bomb.GetComponent<Rigidbody>();
         Vector3 direction = (player.position - throwPoint.position).normalized;

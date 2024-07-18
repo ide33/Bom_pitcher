@@ -24,7 +24,14 @@ public class PlayerAttack : MonoBehaviour
     void ThrowBomb()
     {
         GameObject bomb = Instantiate(bombPrefab, throwPoint.position, throwPoint.rotation);
-        Rigidbody rb = bomb.GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * throwForce, ForceMode.Impulse);
+
+        // // 爆弾に投げたオブジェクトの情報を設定
+        // Bomb bombScript = bomb.GetComponent<Bomb>();
+        // bombScript.thrower = gameObject;
+
+        // 爆弾に力を加える
+        Rigidbody bombRb = bomb.GetComponent<Rigidbody>();
+        Vector3 throwDirection = Camera.main.transform.forward; // カメラの前方向に投げる
+        bombRb.AddForce(throwDirection * throwForce, ForceMode.VelocityChange);
     }
 }

@@ -26,9 +26,9 @@ public class EnemyHealth : MonoBehaviour
     }
 
     // HPを減らす関数
-    public void TakeDamage(int amount)
+    public void TakeDamage(int damage)
     {
-        currentHealth -= amount;
+        currentHealth -= damage;
         if (currentHealth < 0)
         {
             currentHealth = 0;
@@ -45,6 +45,6 @@ public class EnemyHealth : MonoBehaviour
     void GameClear()
     {
         // ゲームオーバーシーンに移行
-        SceneManager.LoadScene("GameClearScene");
+        SceneManager.LoadScene("ClearScene");
     }
 }
