@@ -37,14 +37,14 @@ public class CameraController : MonoBehaviour
         float my = Input.GetAxis("Mouse Y");
 
         // X方向に一定量移動していれば横回転
-        if (Mathf.Abs(mx) > 0.01f)
+        if (Mathf.Abs(mx) > 1f)
         {
             // 回転軸はワールド座標のY軸
             transform.RotateAround(player.transform.position, Vector3.up, mx);
         }
 
         // Y方向に一定量移動していれば縦回転
-        if (Mathf.Abs(my) > 0.01f)
+        if (Mathf.Abs(my) > 1f)
         {
             // 回転軸はカメラ自身のX軸
             transform.RotateAround(player.transform.position, transform.right, -my);

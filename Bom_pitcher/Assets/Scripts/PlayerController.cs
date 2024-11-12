@@ -34,9 +34,9 @@ public class PlayerController : MonoBehaviour
     Quaternion nextRot;//どんくらい回転するか
     void Start()
     {
-        playerRb = GetComponent<Rigidbody>();
+        playerRb = GetComponent<Rigidbody>();  // プレイヤーのRigidbodyを取得
 
-        pastPos = transform.position;
+        pastPos = transform.position;  // プレイヤーの最初の位置を過去位置として保存
     }
 
     void Update()
@@ -76,10 +76,10 @@ public class PlayerController : MonoBehaviour
         Move();
 
         //慣性を消す
-        if(Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
         {
-            //playerRb.velocity = Vector3.zero;
-           // playerRb.angularVelocity = Vector3.zero;
+            playerRb.velocity = Vector3.zero;
+            playerRb.angularVelocity = Vector3.zero;
         }
 
         //------プレイヤーの回転------
@@ -94,10 +94,13 @@ public class PlayerController : MonoBehaviour
         //過去の位置の更新
         pastPos = currentPos;
 
-        if (delta == Vector3.zero)
-            return;
-
-        playerRot = Quaternion.LookRotation(delta, Vector3.up);
+        // プレイヤーの回転処理を即座に向かせるように修正
+        if (delta != Vector3.zero)
+        {
+            // プレイヤーの移動方向に即座に向く
+            playerRot = Quaternion.LookRotation(delta, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, playerRot, Time.deltaTime * 10f); // 回転速度を調整
+        }
 
         diffAngle = Vector3.Angle(transform.forward, delta);
 
@@ -116,9 +119,9 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void Move()
     {
-        //playerRb.AddForce(moveSpeed, ForceMode.Force);
+        playerRb.AddForce(moveSpeed, ForceMode.Force);  // プレイヤーに移動方向の力を加える
 
-        playerRb.velocity = moveSpeed;
+        playerRb.velocity = moveSpeed;  // プレイヤーの速度を設定する
     }
 }
 

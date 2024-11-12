@@ -123,11 +123,6 @@ public class Enemy : MonoBehaviour
 
     void ThrowBomb()
     {
-        
-        // // 爆弾に投げたオブジェクトの情報を設定
-        // Bomb bombScript = bomb.GetComponent<Bomb>();
-        // bombScript.thrower = gameObject;
-
         GameObject bomb = Instantiate(bombPrefab, throwPoint.position, throwPoint.rotation);
         Rigidbody rb = bomb.GetComponent<Rigidbody>();
         Vector3 direction = (player.position - throwPoint.position).normalized;
